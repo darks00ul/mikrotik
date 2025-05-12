@@ -1,0 +1,53 @@
+# Mikrotik Command Execution - Sample Commands File
+# =============================================
+#
+# This file contains commands to be executed on Mikrotik routers.
+# Each line represents a single command to run.
+# Empty lines and lines starting with '#' are ignored.
+#
+# USAGE GUIDELINES:
+# 1. Test commands on a single device before running on multiple devices
+# 2. Place commands in order of execution priority
+# 3. Use export commands to back up configurations before changes
+# 4. For complex scripts, consider using :put to detect errors
+#
+# EXAMPLE COMMANDS:
+
+# System information command - Read only and safe
+#/system resource print
+
+# Get device identity
+#/system identity print
+
+# Check device version
+#/system package print
+
+# Export current configuration (useful for backup)
+#/export file=backup
+
+# List all interfaces
+#/interface print
+
+# List DHCP leases
+#/ip dhcp-server lease print
+
+# List bridge configurations
+#/interface bridge print
+
+# List firewall rules
+#/ip firewall filter print
+
+# Example configuration change (commented out for safety)
+# /interface bridge port set [find interface=wifi1] pvid=500
+
+# Example for checking results with error detection
+# :put [/interface get [find name="wifi1"] name]; :if ($name != "wifi1") do={ :put "ERROR: Interface wifi1 not found" }
+
+
+#/interface/ethernet/set [find where name=ether3] comment="hola"
+
+#/interface/bridge/print brief
+
+#/interface/bridge/set numbers=0 protocol-mode=rstp 
+
+/system/clock/set time-zone-name=America/Buenos_Aires
